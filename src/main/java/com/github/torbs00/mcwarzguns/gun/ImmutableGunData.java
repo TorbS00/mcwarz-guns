@@ -8,6 +8,7 @@ public record ImmutableGunData(
         String gunID,
         String name,
         Material ammoMaterial,
+        long delay,
         int maxClipSize,
         double damagePerBullet,
         long reloadTimeMs,

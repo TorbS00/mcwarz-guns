@@ -6,12 +6,10 @@ public class PlayerGunState {
 
     private final ImmutableGunData gun;
     private int ammoInClip;
-    private long nextShootTime;
 
     public PlayerGunState(ImmutableGunData gun) {
         this.gun = gun;
         this.ammoInClip = gun.maxClipSize();
-        this.nextShootTime = 0;
     }
 
     public void shoot(Player shooter) {
@@ -35,11 +33,4 @@ public class PlayerGunState {
         this.ammoInClip = ammoInClip;
     }
 
-    public long getNextShootTime() {
-        return nextShootTime;
-    }
-
-    public void setNextShootTime(long nextShootTime) {
-        this.nextShootTime = nextShootTime;
-    }
 }

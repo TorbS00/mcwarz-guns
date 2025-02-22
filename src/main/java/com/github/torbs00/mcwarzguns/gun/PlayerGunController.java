@@ -1,5 +1,7 @@
 package com.github.torbs00.mcwarzguns.gun;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.bukkit.Material;
@@ -8,15 +10,21 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Singleton
 public class PlayerGunController {
     private final GunRegistry gunRegistry;
-    private final Map<UUID, Map<Material, PlayerGunState>> playerGuns = new HashMap<>();
+    private final Map<UUID, Map<Material, PlayerGunState>> playerGuns;
+    private final Cache<UUID, Long> shootCooldowns;
 
     @Inject
     public PlayerGunController(GunRegistry gunRegistry) {
         this.gunRegistry = gunRegistry;
+        this.playerGuns = new HashMap<>();
+        this.shootCooldowns = Caffeine.newBuilder()
+                .expireAfterWrite(1, TimeUnit.MINUTES)
+                .build();
     }
 
     public void createGun(Player player, String gunId) {
@@ -32,7 +40,20 @@ public class PlayerGunController {
 
     public void shootGun(Player player, Material material) {
         PlayerGunState pGun = getPlayerGun(player, material);
-        pGun.shoot(player);
+        if(canShoot(player.getUniqueId(), pGun.getGun().delay())) {
+            pGun.shoot(player);
+        }
+    }
+
+    public boolean canShoot(UUID playerId, long delayInMS) {
+        Long lastShotTime = shootCooldowns.getIfPresent(playerId);
+        long currentTime = System.currentTimeMillis();
+
+        if (lastShotTime == null || (currentTime - lastShotTime >= delayInMS)) {
+            shootCooldowns.put(playerId, currentTime);
+            return true;
+        }
+        return false;
     }
 
     public void reloadGun(Player player, Material material) {

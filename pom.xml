@@ -44,6 +44,10 @@
                                     <pattern>com.google.inject</pattern>
                                     <shadedPattern>com.github.torbs00.shaded.inject</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>com.github.benmanes.caffeine</pattern>
+                                    <shadedPattern>com.github.torbs00.shaded.caffeine</shadedPattern>
+                                </relocation>
                             </relocations>
                         </configuration>
                     </execution>
@@ -80,6 +84,11 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>7.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
 </project>

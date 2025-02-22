@@ -1,6 +1,6 @@
 package com.github.torbs00.mcwarzguns.gun;
 
-import com.github.torbs00.mcwarzguns.gun.firemode.SingleShotFireMode;
+import com.github.torbs00.mcwarzguns.gun.firemode.PumpActionFireMode;
 import com.google.inject.Singleton;
 import org.bukkit.Material;
 
@@ -16,13 +16,14 @@ public class GunRegistry {
     public void loadGunsFromJson() {
         ImmutableGunData immutableGunData = new ImmutableGunData(
                 Material.DIAMOND_PICKAXE,
-                "barret50cal",
-                "Barret 50.cal",
-                Material.CLAY,
-                10,
-                20,
-                5,
-                new SingleShotFireMode());
+                "spas12",
+                "SPAS-12",
+                Material.WHEAT_SEEDS,
+                1200,
+                6,
+                4,
+                2900,
+                new PumpActionFireMode(8));
         System.out.println(immutableGunData.name() + " added to the memory!");
         addToMemory(immutableGunData);
     }
