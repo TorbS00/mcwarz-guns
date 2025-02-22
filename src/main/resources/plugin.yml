@@ -1,0 +1,6 @@
+name: mcwarzguns
+version: '1.0.0'
+main: com.github.torbs00.mcwarzguns.GunPlugin
+api-version: '1.21'
+authors: [torbs00]
+provides: [GunAPI]
