@@ -7,6 +7,7 @@ import com.github.torbs00.mcwarzguns.gun.PlayerGunController;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import org.bukkit.Material;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,6 +61,11 @@ public class GunPluginBootstrap implements GunAPI {
 
     private  <T> T createInstance(Class<T> clazz) {
         return injector.getInstance(clazz);
+    }
+
+    @Override
+    public boolean isGun(Material material) {
+        return playerGunController.isGun(material);
     }
 
 }
