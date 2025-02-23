@@ -12,8 +12,8 @@ public class PlayerGunState {
         this.ammoInClip = gun.maxClipSize();
     }
 
-    public void shoot(Player shooter) {
-        gun.fireMode().onShoot(this, shooter);
+    public void shoot(Player shooter, double accuracy) {
+        gun.fireMode().onShoot(this, shooter, accuracy);
     }
 
     public void reload(Player player) {

@@ -23,6 +23,9 @@ public class GunRegistry {
                 6,
                 4,
                 2900,
+                4.5,
+                0.120,
+                0.005,
                 new PumpActionFireMode(8));
         System.out.println(immutableGunData.name() + " added to the memory!");
         addToMemory(immutableGunData);

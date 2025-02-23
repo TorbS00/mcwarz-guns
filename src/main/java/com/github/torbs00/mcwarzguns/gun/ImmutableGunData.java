@@ -12,6 +12,9 @@ public record ImmutableGunData(
         int maxClipSize,
         double damagePerBullet,
         long reloadTimeMs,
+        double bulletSpeed,
+        double accuracy,
+        double accuracyAimed,
         FireMode fireMode
 ) {
     public ImmutableGunData {

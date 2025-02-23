@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 public class BurstFireMode implements FireMode {
     @Override
-    public void onShoot(PlayerGunState playerGunState, Player shooter) {
+    public void onShoot(PlayerGunState playerGunState, Player shooter, double accuracy) {
 
     }
 }
